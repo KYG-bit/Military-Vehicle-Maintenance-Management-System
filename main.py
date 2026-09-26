@@ -43,8 +43,6 @@ def load_excel(file_path):
         Excel에서 읽어온 차량 데이터
     """
 
-    print("Excel 파일을 읽는 중입니다...")
-
     # Excel 파일 읽기
     df = pd.read_excel(
         file_path,
@@ -96,7 +94,6 @@ def validate_columns(df):
             "Excel 파일의 열 이름을 확인해주세요."
         )
 
-    print("Excel 열 구조 확인 완료")
 
 
 # ============================================================
@@ -231,8 +228,6 @@ def classify_all_vehicles(df):
     계산합니다.
     """
 
-    print("엔진오일 상태를 분류하는 중입니다...")
-
     df["엔진오일상태"] = df.apply(
         classify_oil_status,
         axis=1
@@ -334,7 +329,7 @@ def print_statistics(statistics_df):
 
     print("\n")
     print("=" * 70)
-    print("차량 종류별 엔진오일 관리 현황")
+    print("차량 종류별 관리 현황")
     print("=" * 70)
 
     # pandas DataFrame을 콘솔에 출력
