@@ -19,10 +19,70 @@
 
 
 import pandas as pd
+import tkinter as tk
+from tkinter import filedialog
 
 # 차량 종류와 교체 기준 등이 저장된 설정 파일
 import config
 
+
+# ============================================================
+# 함수 0. Excel 파일 선택
+# ============================================================
+
+def select_excel_file():
+    """
+    사용자가 분석할 Excel 파일을 직접 선택하도록 하는 함수입니다.
+
+    Returns
+    -------
+    str
+        사용자가 선택한 Excel 파일의 경로
+    """
+
+    # tkinter 기본 창 생성
+    root = tk.Tk()
+
+    # 빈 tkinter 창은 화면에 표시하지 않음
+    root.withdraw()
+
+    # Windows 파일 선택창 열기
+    file_path = filedialog.askopenfilename(
+        title="차량정보 Excel 파일을 선택하세요",
+        filetypes=[
+            ("Excel 파일", "*.xlsx"),
+            ("Excel 파일", "*.xls"),
+            ("모든 파일", "*.*")
+        ]
+    )
+
+    # tkinter 종료
+    root.destroy()
+
+    return file_path
+
+# ============================================================
+# 함수 0-1. Excel input
+# ============================================================
+def get_input_file():
+    return "input/차량정보.xlsx"
+    """
+    빌드할 때 이 부분으로
+    root = tk.Tk()
+        root.withdraw()
+
+        file_path = filedialog.askopenfilename(
+            title="차량정보 Excel 파일을 선택하세요",
+            filetypes=[
+                ("Excel 파일", "*.xlsx"),
+                ("Excel 파일", "*.xls")
+            ]
+        )
+
+        root.destroy()
+
+        return file_path
+ """
 
 # ============================================================
 # 함수 1. Excel 파일 읽기
@@ -364,11 +424,11 @@ def main():
     print("=" * 70)
 
     # --------------------------------------------------------
-    # 1. 입력 Excel 파일 위치
+    # 1. 사용자가 Excel 파일 선택
     # --------------------------------------------------------
 
-    input_file = "input/차량정보.xlsx"
-
+    input_file = get_input_file()
+    
     # --------------------------------------------------------
     # 2. Excel 파일 읽기
     # --------------------------------------------------------
